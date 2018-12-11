@@ -1,0 +1,29 @@
+#banner {
+    background-image: url("../img/bg-8.jpg");
+}
+
+form {
+    flex-direction: column;
+}
+
+.inpt-form > * {
+    margin: 10px 0;
+}
+
+.inpt-form p {
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: 0.3s all;
+    color: #EDEDED;
+}
+
+.inpt-form a {
+    font-size: 1.2em;
+    text-decoration: none;
+    transition: 0.3s all;
+    color: #00CCFF;
+}
+
+.inpt-form a:hover {
+    color:#00CCFF;
+}

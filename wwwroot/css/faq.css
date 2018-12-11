@@ -1,0 +1,46 @@
+#banner {
+    background-image: url("../img/bg-3.jpg") !important;
+    background-size: cover;
+}
+
+.description li {
+    list-style-type: circle;
+    margin-bottom: 10px;
+}
+
+#browser {
+    width: 100%;
+    height: auto;
+    background-color: #262626;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.browsers-container {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 90%;
+}
+
+.browsers-container-item {
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 400px;
+}
+
+.browsers-container-item img {
+    height: 55px;
+}
+
+.browsers-container-item li {
+    list-style-type: circle;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .browsers-container-item {
+        margin-top: 40px;
+    }
+}

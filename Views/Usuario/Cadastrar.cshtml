@@ -1,0 +1,73 @@
+@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if(@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+
+    @section styles {
+        <link rel="stylesheet" href="/css/cadastrar.css">
+    }
+
+    <main>
+        <i id="menuBtn" class="fas fa-bars"></i>
+        <section id="banner" class="flex-container">
+            <div class="content">
+                <div class="check-point-name">
+                    <h1 class="text-border bold">Cadastro</h1>
+                    <h3 class="text-border">Se cadastre para deixar sua opinião sobre nosso produto.</h3>
+                </div>
+                <div class="description ma-top-g">
+                    <form class="inpt-form ma-bot-g" action="/Usuario/Cadastrar" method="POST">
+                        <p>@ViewBag.Mensagem</p>
+                        <p class="red">@TempData["MensagemCadastroUser"]</p>
+                        <p class="yellow">@TempData["MensagemLogin"]</p>
+
+                        <label>Nome</label>
+                        <input class="inpt" type="text" placeholder="Insira seu nome" name="nome" required>
+
+                        <label>E-mail</label>
+                        <input class="inpt" type="email" placeholder="Insira seu email" name="email" required>
+
+                        <label>Senha</label>
+                        <input class="inpt" type="password" placeholder="Insira sua senha" name="senha" required>
+
+                        <label>Confirme sua senha</label>
+                        <input class="inpt" type="password" placeholder="Confirme sua senha" name="confirmaSenha" required>
+
+                        @if (@usuarioLogado != null)
+                        {
+                            @if(@usuarioLogado.Administrador == true)
+                            {
+                                <label>Selecione o tipo do usuário a ser cadastrado</label>
+                            
+                                <label class="radio-option-label">Administrador
+                                    <input name="tipo" type="radio" value="true" checked>
+                                </label>
+
+                                <label class="radio-option-label">Comum
+                                    <input name="tipo" type="radio" value="false">
+                                </label>
+                            }
+                        }
+                    
+                        <button class="btn_cir" type="submit">Cadastrar-se</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Quebra de secao -->
+            <div class="section-break"></div>
+        </section>
+    </main>

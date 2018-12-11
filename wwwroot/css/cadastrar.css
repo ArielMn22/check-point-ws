@@ -1,0 +1,19 @@
+#banner {
+    /* width: 100%; */
+    /* min-height: 100vh; */
+    /* height: auto; */
+    background-image: url("../img/bg-5.jpg");
+}
+
+form {
+    flex-direction: column;
+}
+
+/* form label {
+    font-size: 2em;
+    color: #EDEDED;
+} */
+
+form > * {
+    margin: 10px 0;
+}

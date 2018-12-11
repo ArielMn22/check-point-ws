@@ -1,0 +1,210 @@
+@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/chat.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+        crossorigin="anonymous">
+
+    @RenderSection("styles", required: false)
+
+    <title>Check Point - A ferramenta de Marcação de Ponto do seu negócio</title>
+    <link rel="shortcut icon" href="/img/check-point-logo.png">
+</head>
+
+<body>
+    <header id="headerTopBar">
+        <div id="logoRedesSociais" class="sided">
+            <div class="logo">
+                <a href="/Pages/Home">
+                    <img src="/img/check-point-logo.png" alt="Check Point logo.">
+                </a>
+            </div>
+            <div class="redes-sociais">
+                <ul>
+                    <li>
+                        <a class="fb-icon s-net" onclick="facebook_click()" href=""></a>
+                    </li>
+                    <li>
+                        <a class="insta-icon s-net" onclick="instagram_click()" href=""></a>
+                    </li>
+                    <li>
+                        <a class="tw-icon s-net" onclick="twitter_click()" href=""></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <nav id="menuTop" class="top-bar flex-container hide">
+            <ul class="flex-container">
+                <li>
+                    <p class="regular" href="/Pages/Home">@ViewBag.UsuarioLogado</p>
+                </li>
+                <li>
+                    <a class="regular" href="/Pages/Home">Home</a>
+                </li>
+                <li>
+                    <a class="regular" href="/Pages/About">Sobre Nós</a>
+                </li>
+                <li>
+                    <a class="regular" href="/Pages/Faq">Faq</a>
+                </li>
+                <li>
+                    <a class="regular" href="/Pages/Contact">Fale Conosco</a>
+                </li>
+                <li>
+                    <a class="regular" href="/Comentario/Todos">Depoimentos</a>
+                </li>
+                <li>
+                    <a class="regular" href="/Usuario/Deslogar">Sair</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    @RenderBody()
+
+    <footer id="rodape" class="flex-container pa-all-g">
+        <div class="rodape-img">
+            <img src="/img/building.jpg" alt="Prédio da Carfel.">
+        </div>
+
+        <div class="contato-ferramentas flex-container">
+            <div class="contato">
+                    <h2>Endereço: Av. Barão de Limeira, 539</h2>
+                    <h2>Telefone: (xx) xxxx-xxxx.</h2>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.887407706288!2d-46.648491284555796!3d-23.53655168469518!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce5843deb99025%3A0xb23619858bc7e63e!2sEscola+SENAI+de+Inform%C3%A1tica!5e0!3m2!1spt-BR!2sbr!4v1544473099826"
+                        width="250" height="250" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+        </div>
+
+        <div class="rodape-item">
+            <h2>Conheça a Check Point</h2>
+            <ul>
+                <li>
+                    <a href="#benefits">Sua inovação no mercado</a>
+                </li>
+                <li>
+                    <a href="#funcs">Funcionalidades</a>
+                </li>
+                <li>
+                    <a href="#planos">Planos</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="rodape-item">
+            <h2>Nossa História</h2>
+            <li>
+                <a href="about.html">O início</a>
+            </li>
+            <li>
+                <a href="about.html">Lorem Ipsum</a>
+            </li>
+            <li>
+                <a href="about.html">Fotos</a>
+            </li>
+        </div>
+
+        <!-- Chat -->
+
+        <div id="chat" class="chat-hide">
+            <header id="chatHeader">
+                <nav class="flex-container">
+                    <div class="perfil flex-container">
+                        <div class="perfil-img">
+                            <img src="/img/picture.jpg" alt="Ariel Paixão dos Santos foto.">
+                        </div>
+                        <div class="perfil-dados">
+                            <span class="perfil-nome">Ariel Paixão dos Santos</span>
+                            <span class="perfil-status">Online</span>
+                        </div>
+                    </div>
+                    <!-- Fim do Perfil -->
+
+                    <div class="acoes flex-container">
+                        <a href="#">
+                            <i class="fas fa-search"></i>
+                        </a>
+
+                        <a href="#">
+                            <i class="fas fa-paperclip"></i>
+                        </a>
+                    </div>
+                </nav>
+            </header>
+
+            <main class="flex-container">
+                <div class="chat-msg chat-msg-enviada">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, quisquam, officia dolorum quas
+                        excepturi
+                        dicta corrupti facilis voluptatum ex eaque consequatur porro reprehenderit quidem, odit beatae
+                        deleniti
+                        dignissimos tempora consectetur.</p>
+                    <span class="chat-msg-horario">16:20h</span>
+                </div>
+
+                <div class="chat-msg chat-msg-recebida">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, quisquam, officia dolorum quas
+                        excepturi
+                        dicta corrupti facilis voluptatum ex eaque consequatur porro reprehenderit quidem, odit beatae
+                        deleniti
+                        dignissimos tempora consectetur.</p>
+                    <span class="chat-msg-horario">16:21h</span>
+                </div>
+
+                <div class="chat-msg chat-msg-enviada">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, quisquam, officia dolorum quas
+                        excepturi
+                        dicta corrupti facilis voluptatum ex eaque consequatur porro reprehenderit quidem, odit beatae
+                        deleniti
+                        dignissimos tempora consectetur.</p>
+                    <span class="chat-msg-horario">16:22h</span>
+                </div>
+
+                <div class="chat-msg chat-msg-recebida">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum, quisquam, officia dolorum quas
+                        excepturi
+                        dicta corrupti facilis voluptatum ex eaque consequatur porro reprehenderit quidem, odit beatae
+                        deleniti
+                        dignissimos tempora consectetur.</p>
+                    <span class="chat-msg-horario">16:23h</span>
+                </div>
+            </main>
+
+            <footer class="flex-container">
+                <i class="far fa-smile-wink"></i>
+                <form class="mensagem">
+                    <textarea style="resize: none;"></textarea>
+                </form>
+                <i class="fas fa-microphone"></i>
+            </footer>
+        </div>
+
+        <!-- Chat-Botão -->
+        <div id="chatBtn" class="flex-container"><i class="far fa-comment-alt"></i></div>
+    </footer>
+    
+    <div class="copyright">
+        <span>Desenvolvido por Ariel Paixão dos Santos</span>
+        <span>E-mail: arielpaixao10@gmail.com</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/chat.js"></script>
+</body>
+
+</html>

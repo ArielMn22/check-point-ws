@@ -1,0 +1,253 @@
+﻿@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if (@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+            
+@section styles {
+    <link rel="stylesheet" href="/css/comments.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+}
+
+<main>
+    <i id="menuBtn" class="fas fa-bars"></i>
+    <section id="banner" class="flex-container">
+        <div class="content">
+            <div class="check-point-name">
+                <h1 class="text-border bold">Check Point</h1>
+                <h2 class="right">By Carfel</h2>
+                <h3 class="text-border">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+            </div>
+            <div class="description ma-top-gg">
+                <h2>O que é Check Point?</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora fugit, blanditiis recusandae
+                    adipisci
+                    eos at nobis ipsam soluta velit aliquam quasi laborum saepe minima tenetur voluptatum
+                    architecto
+                    assumenda, ducimus fugiat.</p>
+            </div>
+        </div>
+        <!-- Quebra de secao -->
+        <div class="section-break"></div>
+    </section>
+
+    <section id="benefits" class="flex-container pa-all-gg">
+        <h2>Benefícios para o seu negócio</h2>
+
+        <div class="benefits-content flex-container ma-top-g">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus eos sed, repellendus, quam
+                necessitatibus
+                eaque asperiores non porro, perferendis corporis consequatur suscipit ab! Consequuntur quisquam,
+                itaque
+                molestias porro deserunt excepturi?Minima aperiam neque labore corporis nihil nesciunt sint
+                voluptatibus
+                eveniet, perspiciatis esse velit nemo laboriosam blanditiis rem impedit natus asperiores odit?
+                Enim,
+                assumenda corporis aut harum doloribus quibusdam magnam mollitia.</p>
+            <div class="benefits-content-img">
+                <img src="/img/improvement.png" alt="Melhorias.">
+            </div>
+        </div>
+    </section>
+
+    <section id="funcs" class="flex-container">
+        <h2>Funcionalidades</h2>
+
+        <div class="func-img ma-top-g flex-container">
+            <div class="func-item down">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque culpa ad atque doloribus saepe
+                    asperiores
+                </p>
+            </div>
+            <div class="func-item up">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque culpa ad atque doloribus saepe
+                    asperiores
+                </p>
+            </div>
+            <div class="func-item down">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque culpa ad atque doloribus saepe
+                    asperiores
+                </p>
+            </div>
+            <div class="func-item up">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque culpa ad atque doloribus saepe
+                    asperiores.
+                </p>
+            </div>
+            <div class="func-item down">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque culpa ad atque doloribus saepe
+                    asperiores.
+                </p>
+            </div>
+        </div>
+
+        <div class="section-break ma-top-g"></div>
+    </section>
+
+    <section id="comments" class="pa-all-gg">
+        <h2>Depoimentos</h2>
+        <img class="ma-top-g" src="/img/point.png" alt="Marca para iniciar ">
+
+        <div class="comments-container">
+        @using CheckPoint.Sistema.Models;
+        @using System.Collections.Generic;
+
+        @{
+            List<ComentarioModel> ComentariosAceitos = (List<ComentarioModel>) @ViewData["ComentariosAceitos"];
+        }
+
+        @if(ComentariosAceitos.Count == 0)
+        {
+            <div class="comments-container-item">
+                <h3>Ainda não há depoimentos enviados</h3>
+                <p>Seja o primeiro a dar o depoimento.</p>
+            </div>
+        } else {
+            int i = 0;
+            foreach(ComentarioModel comentario in @ViewData["ComentariosAceitos"] as List<ComentarioModel>)
+            {
+                if (i < 10)
+                {
+                    <div class="comments-container-item">
+                        <h3>@comentario.Usuario.Nome</h3>
+                        <h4>@comentario.DataCriacao<h4>
+                        <h4>Avaliação: @comentario.Nota<h4>
+                        <p>@comentario.Mensagem</p>
+                    </div>
+                    i++;
+                } else {
+                    break;
+                }
+            }
+        }
+        </div>
+
+        @if (@usuarioLogado != null)
+        {
+        <h2 class="ma-top-g green">@TempData["Comentario"]</h2>
+        <h2 class="ma-top-g red">@TempData["ComentarioErro"]</h2>
+        <h2 class="ma-top-g">Deixe seu depoimento!</h2>
+
+        <form id="commentMessage" class="ma-top-g inpt-form" action="/Comentario/Cadastrar" method="POST">
+            <h3>@usuarioLogado.Nome,</h3>
+            <textarea class="inpt ma-top-s ma-bot-s" name="comentario"></textarea>
+            
+            <input type="hidden" name="id" value="@ViewBag.UsuarioId">
+
+            <!-- Avaliação em estrelas -->
+            <div class="estrelas">
+                <p>Dê uma nota para o nosso software.</p>
+                <!-- <input type="radio" id="cm_star-empty" name="avaliacao" value="0" checked/> -->
+                <label for="cm_star-1"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-1" name="avaliacao" value="1" checked/>
+                <label for="cm_star-2"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-2" name="avaliacao" value="2" />
+                <label for="cm_star-3"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-3" name="avaliacao" value="3" />
+                <label for="cm_star-4"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-4" name="avaliacao" value="4" />
+                <label for="cm_star-5"><i class="fa"></i></label>
+                <input type="radio" id="cm_star-5" name="avaliacao" value="5" />
+            </div>
+
+            <button class="btn_cir ma-top-s" type="submit">Comentar</button>
+        </form>
+        
+        } else {
+        <h2 class="ma-top-g">Deixe seu depoimento!</h2>
+
+        <form id="commentMessage" class="ma-top-g inpt-form">
+            <h3>Faça Login e deixe seu depoimento!</h3>
+            <textarea disabled class="inpt ma-top-s" name="comentario" placeholder="Faça login para fazer seu comentário."></textarea>
+            <input type="button" onclick="location.href='/Usuario/Cadastrar';" class="btn_cir ma-top-s" value="Cadastrar-se">
+        </form>
+        }
+}
+    </section>
+
+    <div class="section-break"></div>
+
+    <section id="planos" class="flex-container pa-all-gg">
+        <h2>Planos</h2>
+
+        <table id="plansTable" class="ma-top-g">
+            <tr>
+                <th class="little-one">Planos</th>
+                <th>Free</th>
+                <th class="orange">R$19,90</th>
+                <th class="orange">R$190</th>
+            </tr>
+            <tr>
+                <td class="little-one">Funcionalidades 1</td>
+                <td>
+                    <i class="fas fa-circle"></i>
+                </td>
+                <td>
+                    <i class="fas fa-circle"></i>
+                </td>
+                <td>
+                    <i class="fas fa-circle orange"></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="little-one">Funcionalidades 2</td>
+                <td>
+                    <i class="fas fa-circle"></i>
+                </td>
+                <td>
+                    <i class="fas fa-circle"></i>
+                </td>
+                <td>
+                    <i class="fas fa-circle orange"></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="little-one">Funcionalidades 3</td>
+                <td>
+                </td>
+                <td>
+                    <i class="fas fa-circle"></i>
+                </td>
+                <td>
+                    <i class="fas fa-circle orange"></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="little-one">Funcionalidades 4</td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <i class="fas fa-circle orange"></i>
+                </td>
+            </tr>
+            <tr>
+                <td class="little-one">Funcionalidades 5</td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <i class="fas fa-circle orange"></i>
+                </td>
+            </tr>
+        </table>
+
+        <h2 class="text-border orange ma-top-g">Contrate nosso serviço para o seu negócio.</h2>
+        <h2 class="text-border">Ligue: (xx) xxxx-xxxx</h2>
+    </section>
+</main>

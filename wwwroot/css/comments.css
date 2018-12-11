@@ -1,0 +1,97 @@
+#comments {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+
+    background-color: #262626;
+    width: 100%;
+    height: auto;
+}
+
+.comments-container {
+    width: 70%;
+
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */
+}
+
+.comments-container > * {
+    margin: 20px 0;
+}
+
+.comments-container > *:nth-child(odd)
+{
+    align-self: flex-start;
+}
+
+.comments-container > *:nth-child(even)
+{
+    align-self: flex-end;
+}
+
+.comments-container-item {
+    max-width: 60%;
+    border-radius: 20px;
+    border: 2px solid #00ccff;
+    padding: 20px;
+}
+
+.comments-container-item h3 {
+    color: #FF8C1B;
+    font-size: 1.5em;
+}
+
+.comments-container-item h4 {
+    color: #FF8C1B;
+}
+
+.comments-container-item p {
+    font-size: 1.3em;
+}
+
+#commentMessage {
+    width: 70%;
+}
+
+#commentMessage a {
+    text-decoration: none;
+}
+
+#commentMessage textarea {
+    width: 100%;
+    resize: none;
+
+}
+
+#commentMessage h3 {
+    font-size: 1.5em;
+    color: #FF8C1B;
+}
+
+/* Avaliação */
+.estrelas input[type=radio] {
+    display: none;
+}
+  
+.estrelas label i.fa:before {
+    content:'\f005';
+    color: #FC0;
+}
+
+.estrelas input[type=radio]:checked ~ label i.fa:before {
+    color: #CCC;
+}
+
+/* Responsividade */
+@media screen and (max-width: 700px)
+{
+    .comments-container {
+        width: 100%;
+    }
+
+    .comments-container-item {
+        max-width: 80%;
+    }
+}

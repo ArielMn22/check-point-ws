@@ -1,0 +1,847 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Roboto';
+    font-weight: 300;
+    outline: none;
+}
+
+@font-face {
+    font-family: 'Agency FB Bold';
+    src: url("../fonts/AGENCYB.TTF");
+}
+
+@font-face {
+    font-family: 'Agency FB';
+    src: url("../fonts/AGENCYR.TTF");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto-Light.ttf");
+}
+
+#headerTopBar {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Sided logo e redes sociais */
+.small-width {
+    width: 90px !important;
+}
+
+.small-height {
+    height: 73px !important;
+}
+
+.trans-scl {
+    transform: scale(0.5) !important;
+}
+
+#menuBtn {
+    font-size: 4em;
+    color: white;
+    display: none;
+    margin-right: 20px;
+
+    position: fixed;
+    right: 20px;
+    top: 40px;
+    z-index: 2;
+}
+
+.top-bar {
+    background-color: #FF8C1B;
+    justify-content: flex-end;
+    height: 56px;
+    border: 1px solid black;
+}
+
+.top-bar ul {
+    margin-right: 20px;
+
+    flex: 1;
+    justify-content: space-around;
+    max-width: 67vw;
+}
+
+li {
+    list-style-type: none;
+}
+
+.top-bar ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-bar ul li a {
+    color: #EDEDED;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 17px 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.top-bar ul li p {
+    text-transform: uppercase;
+}
+
+.top-bar ul li a:hover {
+    background-color: #1DB9DD;
+    transition: 0.3s;
+}
+
+#logoRedesSociais {
+    position: absolute;
+    margin-left: 4vw;
+    transform: translateY(15px);
+
+    text-align: center;
+    z-index: 1;
+
+    perspective: 100px;
+}
+
+#logoRedesSociais li {
+    margin: 40px 0;
+}
+
+#menuBtn {
+    font-size: 3em;
+}
+
+#logoRedesSociais li:hover {
+    transform:  rotateY(360deg);
+    transition: transform 0.5s;
+}
+
+#logoRedesSociais li:not(:hover) {
+    transition: transform 0.5s;
+}
+
+.logo {
+    background-color: #FF8C1B;
+    width: 146px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.logo img {
+    height: 146px;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.s-net {
+    padding: 12px 20px;
+}
+
+#banner {
+    flex-direction: column;
+    align-items: center;
+    
+    min-height: 100vh;
+    height: auto;
+    width: 100%;
+    background-image: url("../img/bg-1.jpg");
+    background-size: cover;
+}
+
+.content {
+    width: 800px;
+    flex: 1;
+    margin-top: 23.148148148148145vh;
+    margin-right: 30vw;
+}
+
+.content h2 {
+    transform: translateY(-30px);
+}
+
+.content h3 {
+    font-size: 3em;
+    color: rgb(32, 204, 243); /* #1DB9DD */
+    font-family: 'Agency FB';
+}
+
+#benefits {
+    background-color: #262626;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.benefits-content {
+    justify-content: space-around;
+    max-width: 1200px;
+}
+
+.benefits-content p {
+    flex: 4;
+}
+
+.benefits-content .benefits-content-img {
+    flex: 4;
+    text-align: center;
+}
+
+#funcs {
+    background-color: #262626;
+    width: 100%;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+.func-img {
+    background-image: url("../img/func.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    height: 61vh; /* 555px */
+    /* padding: 281px 598px; */
+    width: 63%;
+}
+
+.func-item {
+    /* height: 555px; */
+    display: flex;
+    margin-left: 25px;
+    /* padding: 50px 0; */
+}
+
+.up {
+    align-items: flex-start;
+}
+
+.down {
+    align-items: flex-end;
+}
+
+#planos  {
+    background-color: #262626;
+    width: 100%;
+
+    flex-direction: column;
+    align-items: center;
+}
+
+#planos h2.text-border, h3.text-border {
+    font-family: 'Agency FB Bold';
+    font-size: 3em;
+    font-weight: 700;
+}
+
+/* Estilizando tabela */
+#plansTable {
+    width: 60%;
+    color: #EDEDED;
+}
+
+/* #plansTable th,td {
+    border: 1px solid white;
+} */
+
+#plansTable th {
+    font-size: 1.8em;
+    font-weight: 300;
+}
+
+#plansTable td {
+    text-align: center;
+    padding: 30px 0;
+    font-size: 1.5em;
+}
+
+.little-one {
+    width: 32%;
+}
+
+#rodape {
+    background-color: #FF8C1B;
+    width: 100%;
+    min-height: 40vh;
+    height: auto;
+
+    justify-content: space-around;
+}
+
+.rodape-img {
+    flex: 1;
+}
+
+.contato > * {
+    margin: 10px 0;
+}
+
+.contato-ferramentas {
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.contato-ferramentas img {
+   height: 100px;
+}
+
+.ferramentas {
+    text-align: center;
+    margin-top: 20px;
+    max-width: 360px;
+
+    justify-content: space-around;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.rodape-item {
+    flex: 1;
+}
+
+.rodape-item li {
+    padding-top: 25px;
+}
+
+.rodape-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.inpt {
+    font-size: 1.3em;
+    border-radius: 20px;
+    padding: 5px;
+    text-indent: 2px;
+    border: 1px solid #FF8C1B;
+    width: 40%;
+    text-indent: 8px;
+}
+
+.inpt-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.inpt-form label {
+    font-size: 2em;
+    color: #EDEDED;
+}
+
+.inpt-form label.radio-option-label {
+    font-size: 1.3em;
+}
+
+.btn_cir {
+    min-width: 88px;
+    width: auto;
+    height: 36px;
+    border-radius: 30px;
+    border: none;
+    padding: 0 10px;
+    
+    transition: all 0.4s;
+    background-color: rgb(1, 255, 1);
+    font-size: 1.3em;
+}
+
+.btn_cir:hover {
+    background-color: #FF8C1B;
+    box-shadow: 0px 4px 10px rgb(70, 70, 70);
+}
+
+.btn_cir:active {
+    background-color: #007bff;
+    box-shadow: 0 0 0 3px #00ccff;
+}
+
+/* Margens e Paddings */
+
+.ma-top-gg {
+    /* margin-top: 180px; */
+    margin-top: 16.666666666666664vh;
+}
+
+.ma-top-g {
+    margin-top: 40px;
+}
+
+.ma-top-s {
+    margin-top: 20px;
+}
+
+.ma-bot-s {
+    margin-bottom: 10px;
+}
+
+.ma-bot-g {
+    margin-bottom: 40px;
+}
+
+.pa-all-gg {
+    padding: 100px;
+}
+
+.pa-all-g {
+    padding: 40px;
+}
+
+/* Estilizando tipografia */
+
+h1 {
+    font-family: 'Agency FB Bold';
+    color: #FF8C1B;
+    font-size: 14em;
+}
+
+h2 {
+    color: #EDEDED;
+    font-size: 2em;
+    font-weight: 300;
+    font-family: 'Agency FB';
+}
+
+p {
+    color: #EDEDED;
+    font-size: 1.3em;
+}
+
+/* Estilizacoes */
+.fb-icon {
+    background-image: url("../img/facebook-icon.png");
+    background-repeat: none;
+    background-size: cover;
+}
+
+.insta-icon {
+    background-image: url("../img/instagram-icon.png");
+    background-repeat: none;
+    background-size: cover;
+}
+
+.tw-icon {
+    background-image: url("../img/twitter-icon.png");
+    background-repeat: none;
+    background-size: cover;
+}
+
+.orange {
+    color: #FF8C1B;
+}
+
+.yellow {
+    color: yellow;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: rgb(28, 201, 28);
+}
+
+.text-border {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.regular {
+    font-weight: 400;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.section-break {
+    width: 100%;
+    height: 28px;
+    background-color: #FF8C1B;
+    /* position: absolute; */
+    bottom: 0;
+}
+
+.copyright {
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 56px;
+    height: auto;
+    flex-wrap: wrap;
+
+    color: white;
+}
+
+.copyright span {
+    font-size: 1.5em;
+}
+
+
+
+/* js */
+
+.transition-class {
+    transition: all 0.3s;
+}
+
+/* Responsividade */
+
+@media screen and (max-width: 1665px) { /* Small Desktop Monitors */
+    .content {
+        margin-right: 20.25vw;
+    }
+}
+
+@media screen and (max-width: 1366px) {
+    h1 {
+        font-size: 11em;
+    }
+
+    h3 {
+        font-size: 2.7em;
+    }
+
+    .content {
+        margin-right: 15.25vw;
+    }
+
+    .contato-ferramentas {
+        padding: 0 40px;
+    }
+
+    .contato-ferramentas img {
+        height: 80px;
+    }
+
+    .logo img {
+        height: 120px;
+    }
+
+    .logo {
+        width: 120px;
+    }
+}
+
+@media screen and (max-width: 1290px) {
+    * {
+        font-size: 12px;
+    }
+
+    #logoRedesSociais {
+        margin-left: 2vw;
+    }
+
+    .rodape-img img {
+        height: 180px;
+    }
+
+    .ferramentas img {
+        height: 60px;
+    }
+
+    .content {
+        margin-right: 6.25vh;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    * {
+        font-size: 11px;
+    }
+
+    .content {
+        width: 650px;
+        margin-right: 11.25vw;
+    }
+
+    .func-img {
+        width: 75%;
+    }
+
+    #plansTable {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 910px) { /* Tablets */
+
+    * {
+        font-size: 15px;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    #menuBtn {
+        display: unset;
+    }
+
+    .right {
+        text-align: center;
+    }
+
+    #headerTopBar {
+        text-align: right;
+    }
+
+    h1 {
+        font-size: 8em;
+    }
+
+    h2 {
+        margin-top: 40px;
+    }
+
+    .logo {
+        padding-top: 10px;
+        border: 1px solid black;
+    }
+
+    .top-bar {
+        height: 100vh;
+        width: 100%;
+        background-color: rgba(255,140,27, 0.9);
+    }
+
+    .top-bar ul {
+        flex-direction: column;
+        padding-top: 20vh;
+    }
+
+    .top-bar ul li a:hover {
+        border-radius: 10px;
+    }
+
+    #logoRedesSociais {
+        display: flex;
+        align-items: center;
+    }
+
+    #logoRedesSociais li {
+        margin: 0 15px;
+    }
+
+    #logoRedesSociais li:hover {
+        transform: unset;
+    }
+
+    .redes-sociais ul {
+        display: flex;
+        align-items: center;
+    }
+
+    .redes-sociais li {
+        margin-left: 10px;
+    }
+    
+    .content {
+        text-align: center;
+        margin-right: 0;
+    }
+
+    .s-net {
+        padding: 14px 23px;
+    }
+
+    .func-img {
+        width: 90%;
+    }
+
+    .func-item {
+        max-height: 360px;
+    }
+
+    .func-item p {
+        font-size: 0.9em;
+    }
+
+    #plansTable {
+        width: 100%;
+    }
+
+    .inpt-form {
+        align-items: center;
+    }
+
+    .inpt {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 700px) { /* Smartphones */
+
+    .top-bar {
+        z-index: 3;
+    }
+
+    #menuBtn {
+        right: 0;
+        top: 28px;
+    }
+
+    h1 {
+        font-size: 4.5em;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .small-height {
+        height: 54px !important;
+    }
+
+    .small-width {
+        width: 64px !important;
+    }
+
+    .s-net {
+        padding: 11px 20px;
+    }
+
+    .content {
+        margin-top: 27vh;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .content h3 {
+        font-size: 2em;
+    }
+
+    .content h2 {
+        transform: unset;
+        text-align: center;
+    }
+
+    .content p {
+        margin-top: 20px;
+    }
+
+    .pa-all-gg {
+        padding: 40px;
+    }
+
+    .benefits-content {
+        flex-direction: column-reverse;
+    }
+
+    .benefits-content-img img {
+        height: 100px;
+        margin-bottom: 40px;
+    }
+
+    .func-img {
+        background: unset;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .func-item {
+        margin-bottom: 20px;
+    }
+
+    .func-item p {
+        font-size: 1.3em;
+    }
+
+    .down, .up {
+        align-items: unset;
+    }
+
+    #plansTable {
+        min-width: 65px;
+    }
+
+    #plansTable th {
+        font-size: 1em;
+        /* min-width: 65px; */
+    }
+
+    #plansTable  td {
+        font-size: 1em;
+    }
+
+    #planos h2.text-border, h3.text-border {
+        font-size: 2em;
+    }
+
+    #rodape {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #rodape .contato h2 {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .contato {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .rodape-item {
+        margin-top: 40px;
+        min-width: 77%;
+        width: auto;
+    }
+
+    .rodape-item > * {
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .copyright {
+        flex-direction: column;
+    }
+
+    .copyright span {
+        font-size: 1.1em;
+    }
+
+    .inpt {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .s-net {
+        padding: 5px 14px;
+    }
+
+    .inpt {
+        width: 90%;
+    }
+
+    .inpt-form label {
+        font-size: 1.5em;
+    }
+}

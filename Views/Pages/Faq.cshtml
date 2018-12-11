@@ -1,0 +1,113 @@
+﻿@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if (@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+    @section styles {
+        <link rel="stylesheet" href="/css/faq.css">
+    }
+
+    <main>
+        <i id="menuBtn" class="fas fa-bars"></i>
+        <section id="banner" class="flex-container">
+            <div class="content">
+                <div class="check-point-name">
+                    <h1 class="text-border bold">FAQ</h1>
+                    <!-- <h2 class="right">By Carfel</h2> -->
+                    <h3 class="text-border">Perguntas Frequentes</h3>
+                </div>
+                <div class="description ma-top-gg">
+                    <h2>Perguntas sobre nossa ferramenta:</h2>
+                    <ul>
+                        <li>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </li>
+                        <li>
+                            <p>Eligendi architecto veniam provident distinctio similique</p>
+                        </li>
+                        <li>
+                            <p>Magni dicta animi harum mollitia repudiandae error esse voluptatibus?</p>
+                        </li>
+                        <li>
+                            <p>Dolorem reiciendis illum aliquam animi repudiandae deleniti nesciunt</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Quebra de secao -->
+            <div class="section-break"></div>
+        </section>
+
+        <section id="browser" class="flex-container pa-all-g">
+            <h2>Navegadores</h2>
+
+            <div class="browsers-container flex-container ma-top-g">
+                <div class="browsers-container-item flex-container">
+                    <img src="/img/google-icon.png" alt="Google Chrome ícone.">
+                    <ul class="ma-top-g">
+                        <li>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
+                        </li>
+                        <li>
+                            <p>Eligendi architecto veniam provident distinctio similique?</p>
+                        </li>
+                        <li>
+                            <p>Magni dicta animi harum mollitia repudiandae error esse voluptatibus?</p>
+                        </li>
+                        <li>
+                            <p>Dolorem reiciendis illum aliquam animi repudiandae deleniti nesciunt?</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="browsers-container-item flex-container">
+                    <img src="/img/edge-icon.png" alt="Google Chrome ícone.">
+                    <ul class="ma-top-g">
+                        <li>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
+                        </li>
+                        <li>
+                            <p>Eligendi architecto veniam provident distinctio similique?</p>
+                        </li>
+                        <li>
+                            <p>Magni dicta animi harum mollitia repudiandae error esse voluptatibus?</p>
+                        </li>
+                        <li>
+                            <p>Dolorem reiciendis illum aliquam animi repudiandae deleniti nesciunt?</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="browsers-container-item flex-container">
+                    <img src="/img/mozilla-icon.png" alt="Google Chrome ícone.">
+                    <ul class="ma-top-g">
+                        <li>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit?</p>
+                        </li>
+                        <li>
+                            <p>Eligendi architecto veniam provident distinctio similique?</p>
+                        </li>
+                        <li>
+                            <p>Magni dicta animi harum mollitia repudiandae error esse voluptatibus?</p>
+                        </li>
+                        <li>
+                            <p>Dolorem reiciendis illum aliquam animi repudiandae deleniti nesciunt?</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>

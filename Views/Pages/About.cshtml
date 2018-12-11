@@ -1,0 +1,203 @@
+﻿@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if (@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+    
+    @section styles {
+        <link rel="stylesheet" href="/css/about.css">
+    }
+
+    <main>
+        <i id="menuBtn" class="fas fa-bars"></i>
+        <section id="banner" class="flex-container">
+            <div class="content">
+                <div class="check-point-name">
+                    <h1 class="text-border bold">Sobre Nós</h1>
+                    <h3 class="text-border">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+                </div>
+                <div class="description ma-top-gg">
+                    <h2>Carfel</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora fugit, blanditiis recusandae
+                        adipisci
+                        eos at nobis ipsam soluta velit aliquam quasi laborum saepe minima tenetur voluptatum
+                        architecto
+                        assumenda, ducimus fugiat.</p>
+                </div>
+            </div>
+            <!-- Quebra de secao -->
+            <div class="section-break"></div>
+        </section>
+
+        <section id="benefits" class="flex-container pa-all-gg">
+            <h2>Onde tudo começou</h2>
+
+            <div class="benefits-content flex-container ma-top-g">
+                <p>Feira de tecnologia, ano X, Felipe e Carlos se conheceram enquanto olhavam o estande... Lorem ipsum
+                    dolor
+                    sit amet consectetur adipisicing elit. Accusamus eos sed, repellendus, quam necessitatibus eaque
+                    asperiores
+                    non porro, perferendis corporis consequatur suscipit ab! Consequuntur quisquam, itaque molestias
+                    porro
+                    deserunt excepturi?Minima aperiam neque labore corporis nihil nesciunt sint voluptatibus eveniet,
+                    perspiciatis
+                    esse velit nemo laboriosam blanditiis rem impedit natus asperiores odit? Enim, assumenda corporis
+                    aut
+                    harum doloribus quibusdam magnam mollitia.</p>
+            </div>
+        </section>
+
+        <section id="benefits" class="flex-container pa-all-g">
+            <h2>Lorem Ipsum</h2>
+
+            <div class="benefits-content flex-container ma-top-g">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ligula turpis, commodo ut justo
+                    pulvinar,
+                    luctus ullamcorper lacus. Vivamus tristique faucibus risus quis bibendum. Curabitur sit amet metus
+                    tincidunt
+                    nulla efficitur tempor. Donec dui metus, imperdiet quis ligula quis, tempus dictum mauris. Aenean
+                    venenatis
+                    lacus eget purus eleifend sagittis. Donec eget elit in dolor pretium rhoncus ut vitae purus. Ut
+                    quis
+                    bibendum sapien, ut sodales dolor. Aliquam eget eleifend lacus. Ut elementum eget lorem ac lacinia.
+                    Cras
+                    nec est est. Mauris nisi libero, dapibus in lacinia eget, porttitor nec nulla. Suspendisse commodo
+                    id
+                    odio ac hendrerit. Suspendisse auctor augue dolor, quis consequat libero ornare sit amet. Aliquam
+                    dictum
+                    nisl scelerisque, sagittis ex non, tempus tortor. Cras fermentum, urna feugiat tincidunt
+                    condimentum,
+                    tellus tortor laoreet ante, eu posuere dolor orci sit amet justo. Aliquam volutpat metus quis
+                    mattis
+                    dapibus. Pellentesque quam nibh, sollicitudin a purus a, dapibus viverra leo. Nunc ac tellus lacus.
+                    Phasellus
+                    dapibus velit ut rutrum hendrerit. Nulla facilisi. In hac habitasse platea dictumst. Sed nisl
+                    velit,
+                    varius egestas rhoncus ut, mattis nec arcu. Vivamus hendrerit in diam fermentum sollicitudin. In
+                    aliquet
+                    tellus at leo molestie vestibulum. Curabitur gravida, elit et interdum tempor, ante sem ornare
+                    diam,
+                    id sodales ante massa et nulla. Nullam euismod rhoncus faucibus. Maecenas et diam dolor. Etiam
+                    feugiat,
+                    quam ac placerat fermentum, enim orci tristique magna, vel mattis enim quam at lorem. Lorem ipsum
+                    dolor
+                    sit amet, consectetur adipiscing elit. Etiam ac turpis fermentum, sagittis est eget, tempor nibh.
+                    Donec
+                    fringilla dui neque, et ornare eros accumsan et. Integer lobortis ex non suscipit tempor. Aliquam
+                    pellentesque
+                    quis magna a posuere. Nunc non vulputate metus. Pellentesque vel arcu lectus. Sed non turpis et
+                    mauris
+                    pellentesque elementum vel tempor augue. Praesent id ipsum finibus, lacinia diam nec, maximus
+                    ligula.
+                    Nam eu eros lacus. Aliquam aliquet pharetra justo, feugiat cursus risus efficitur vitae. Etiam ut
+                    aliquet
+                    nisi. Suspendisse lacinia aliquet lectus, nec venenatis quam pellentesque et. Etiam ut orci neque.
+                    Proin
+                    non sollicitudin erat, quis lacinia metus. Vestibulum sagittis finibus leo eget dignissim. Donec ac
+                    turpis
+                    eu ipsum vehicula faucibus. Nullam turpis nisl, dignissim sed enim quis, mollis pellentesque nisi.
+                    Pellentesque
+                    sit amet odio in quam aliquet sagittis quis in urna. Proin ut justo eros. Donec a nunc viverra,
+                    malesuada
+                    leo vel, imperdiet neque. Phasellus ornare fermentum quam ac porttitor. Sed eu erat ac neque tempor
+                    lobortis
+                    sit amet nec turpis. Nulla dolor lacus, sodales eu condimentum ornare, aliquam eu felis. Vestibulum
+                    dui
+                    enim, elementum sit amet vulputate sit amet, cursus nec enim. Donec ante eros, hendrerit suscipit
+                    neque
+                    fermentum, pulvinar tempor arcu. Sed tincidunt neque eget semper congue. Mauris fringilla
+                    consectetur
+                    diam, et eleifend libero eleifend quis. Suspendisse potenti. Proin ornare mi magna, porttitor
+                    rhoncus
+                    enim fringilla vitae. Proin nibh leo, tincidunt eget lacus in, auctor euismod nisl. Aenean eget
+                    malesuada
+                    odio, quis finibus enim. Aenean posuere turpis sed lacinia ultricies. Duis feugiat tincidunt
+                    iaculis.
+                    Curabitur vitae nisl velit. Nunc pulvinar, felis a pellentesque vulputate, urna lacus rhoncus
+                    augue,
+                    non gravida felis urna sit amet diam. Quisque efficitur justo ac orci elementum facilisis. Vivamus
+                    id
+                    feugiat tortor, eu laoreet quam. Sed at posuere ipsum, eget tristique magna. Vestibulum rutrum
+                    tincidunt
+                    pretium. Aliquam id consequat nulla. Morbi eget lacus non nibh bibendum mollis at at urna. Mauris
+                    at
+                    sem a orci tempor ultricies. In sit amet consequat mi. Nulla facilisi. Donec consectetur orci
+                    lacinia
+                    quam blandit euismod. Vivamus mollis at nunc eget lacinia.</p>
+            </div>
+        </section>
+
+        <section id="benefits" class="flex-container pa-all-g">
+            <h2>Lorem Ipsum</h2>
+
+            <div class="benefits-content flex-container ma-top-g">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ligula turpis, commodo ut justo
+                    pulvinar,
+                    luctus ullamcorper lacus. Vivamus tristique faucibus risus quis bibendum. Curabitur sit amet metus
+                    tincidunt
+                    nulla efficitur tempor. Donec dui metus, imperdiet quis ligula quis, tempus dictum mauris. Aenean
+                    venenatis
+                    lacus eget purus eleifend sagittis. Donec eget elit in dolor pretium rhoncus ut vitae purus. Ut
+                    quis
+                    bibendum sapien, ut sodales dolor. Aliquam eget eleifend lacus. Ut elementum eget lorem ac lacinia.
+                    Cras
+                    nec est est. Mauris nisi libero, dapibus in lacinia eget, porttitor nec nulla. Suspendisse commodo
+                    id
+                    odio ac hendrerit. Suspendisse auctor augue dolor, quis consequat libero ornare sit amet. Aliquam
+                    dictum
+                    nisl scelerisque, sagittis ex non, tempus tortor. Cras fermentum, urna feugiat tincidunt
+                    condimentum,
+                    tellus tortor laoreet ante, eu posuere dolor orci sit amet justo. Aliquam volutpat metus quis
+                    matti.</p>
+                <!-- <div class="benefits-content-img">
+                    <img src="/img/improvement.png" alt="Melhorias.">
+                </div> -->
+            </div>
+        </section>
+
+        <section id="pictures" class="flex-container pa-all-g">
+            <h2>Fotos</h2>
+            <div class="pictures-container ma-top-g">
+                <div class="pictures-item">
+                    <img src="/img/img1.jpg" alt="Imagem 1.">
+                </div>
+
+                <div class="pictures-item">
+                    <img src="/img/img2.jpg" alt="Imagem 2.">
+                </div>
+
+                <div class="pictures-item">
+                    <img src="/img/img3.jpg" alt="Imagem 3.">
+                </div>
+            </div>
+        </section>
+
+        <section id="fundadores" class="flex-container pa-all-gg flex-container">
+            <h2 class="center">Fundadores</h2>
+            <div class="fund-container flex-container">
+                <div class="fund-item">
+                    <img src="/img/Felipe.jpg" alt="Felipe, um dos fundadores da empresa Carfel.">
+                    <h3>Felipe Oliveira</h3>
+                    <span>Lorem ipsum</span>
+                </div>
+                <div class="fund-item">
+                    <img src="/img/Tsukamoto.jpg" alt="Tsukamoto, um dos fundadores da empresa Carfel.">
+                    <h3>Carlos Tsukamoto</h3>
+                    <span>Lorem ipsum</span>
+                </div>
+            </div>
+        </section>
+    </main>

@@ -1,0 +1,59 @@
+﻿@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if (@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+
+    @section styles {
+        <link rel="stylesheet" href="/css/contato.css">
+    }
+
+    <main>
+        <i id="menuBtn" class="fas fa-bars"></i>
+        <section id="banner" class="flex-container">
+            <div class="content">
+                <div class="check-point-name">
+                    <h1 class="text-border bold">Contato</h1>
+                    <h3 class="text-border">Fale Conosco</h3>
+                </div>
+                <div class="contato-top ma-top-gg">
+                    <div class="contato-top-item">
+                        <i class="fas fa-phone"></i>
+                        <span>(xx) xxxx-xxxx</span>
+                    </div>
+
+                    <div class="contato-top-item">
+                        <i class="far fa-envelope"></i>
+                        <span>Nos envie um e-mail</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Quebra de secao -->
+            <div class="section-break"></div>
+        </section>
+
+        <section id="contatoForm" class="flex-container pa-all-g">
+            <h2>Preencha os campos abaixo e nos envie uma mensagem</h2>
+
+            <form class="flex-container ma-top-g" action="/Email/EnviarContato" method="POST">
+                <input class="inpt" type="text" placeholder="Insira seu nome" name="usuarioNome" required>
+                <input class="inpt" type="email" placeholder="Insira seu e-mail" name="userEmail" required>
+                <textarea style="resize: none" cols="30" rows="10" placeholder="Insira sua mensagem" name="emailMensagem"></textarea>
+                <button class="btn_cir" type="submit">Enviar</button>
+            </form>
+
+        </section>
+    </main>

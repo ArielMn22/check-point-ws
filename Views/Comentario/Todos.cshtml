@@ -1,0 +1,70 @@
+@using check_point.sistema.Sessions;
+@using Microsoft.AspNetCore.Http;
+@using CheckPoint.Sistema.Models;
+
+@{
+    UsuarioModel usuarioLogado = Context.Session.GetObject<UsuarioModel>("usuarioLogado");
+}
+
+@if(@usuarioLogado == null){
+        Layout = "MasterPageDeslogado";
+} else {
+    if (@usuarioLogado.Administrador == true)
+    {
+        Layout = "MasterPageAdminLogado";
+    } else {
+        Layout = "MasterPageLogado";
+    }
+}
+
+@section styles {
+    <link rel="stylesheet" href="/css/todosComentarios.css">
+    <link rel="stylesheet" href="/css/comments.css">
+}
+
+<main>
+        <i id="menuBtn" class="fas fa-bars"></i>
+        <section id="banner" class="flex-container">
+                <div class="content">
+                    <div class="check-point-name">
+                        <h1 class="text-border bold">Depoimentos</h1>
+                        <h3 class="text-border">Veja aqui todos os depoimentos do nosso sistema.</h3>
+                    </div>
+                </div>
+                <!-- Quebra de secao -->
+                <div class="section-break"></div>
+            </section>
+
+    <section id="comments" class="pa-all-gg">
+        <h2>Todos os depoimentos</h2>
+        <img class="ma-top-g" src="/img/point.png" alt="Marca para iniciar ">
+
+        <div class="comments-container">
+        @using CheckPoint.Sistema.Models;
+        @using System.Collections.Generic;
+
+        @{
+            List<ComentarioModel> ComentariosAceitos = (List<ComentarioModel>) @ViewData["ComentariosAceitos"];
+        }
+
+        @if(ComentariosAceitos.Count == 0)
+        {
+            <div class="comments-container-item">
+                <h3>Ainda não há depoimentos enviados</h3>
+                <p>Seja o primeiro a dar o depoimento.</p>
+            </div>
+        } else {
+            foreach(ComentarioModel comentario in @ViewData["ComentariosAceitos"] as List<ComentarioModel>)
+            {
+                    <div class="comments-container-item">
+                        <h3>@comentario.Usuario.Nome</h3>
+                        <h4>@comentario.DataCriacao<h4>
+                        <h4>Avaliação: @comentario.Nota<h4>
+                        <p>@comentario.Mensagem</p>
+                    </div>
+            }
+        }
+        </div>
+}
+    </section>
+</main>
