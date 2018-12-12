@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CheckPoint.Sistema.Controllers {
     public class ComentarioController : Controller {
+        
         private IComentario ComentarioRepositorio { get; set; }
+        
         public ComentarioController () {
             ComentarioRepositorio = new ComentarioRepositorio ();
         }
@@ -57,21 +59,19 @@ namespace CheckPoint.Sistema.Controllers {
 
                 if (usuario.Administrador) {
 
-                    ComentarioRepositorio comentarioRep = new ComentarioRepositorio ();
-
                     /// <summary>
                     /// Retorna somente os comentários com status igual ao passado pelo parâmetro.
                     /// </summary>
                     /// <returns></returns>
 
                     if (tipoGerenciar == "aceito") {
-                        ViewData["Comentarios"] = comentarioRep.ListarComentariosEspecifico (TiposComentario.Aceito.ToString ());
+                        ViewData["Comentarios"] = ComentarioRepositorio.ListarComentariosEspecifico (TiposComentario.Aceito.ToString ());
                         ViewBag.TipoComentario = "Comentários Aceitos";
                     } else if (tipoGerenciar == "recusado") {
-                        ViewData["Comentarios"] = comentarioRep.ListarComentariosEspecifico (TiposComentario.Recusado.ToString ());
+                        ViewData["Comentarios"] = ComentarioRepositorio.ListarComentariosEspecifico (TiposComentario.Recusado.ToString ());
                         ViewBag.TipoComentario = "Comentários Recusados";
                     } else {
-                        ViewData["Comentarios"] = comentarioRep.ListarComentariosEspecifico (TiposComentario.EmEspera.ToString ());
+                        ViewData["Comentarios"] = ComentarioRepositorio.ListarComentariosEspecifico (TiposComentario.EmEspera.ToString ());
                         ViewBag.TipoComentario = "Comentários em Espera";
                     }
 
@@ -89,15 +89,13 @@ namespace CheckPoint.Sistema.Controllers {
         public IActionResult Gerenciar (IFormCollection form) {
             int CommentId = int.Parse (form["commentId"]);
 
-            ComentarioRepositorio comentarioRep = new ComentarioRepositorio ();
-
-            ComentarioModel comentarioModel = comentarioRep.BuscarPorId (CommentId);
+            ComentarioModel comentarioModel = ComentarioRepositorio.BuscarPorId (CommentId);
 
             if (form["choice"] == "aceito") {
-                comentarioRep.Editar (TiposComentario.Aceito.ToString (), comentarioModel);
+                ComentarioRepositorio.Editar (TiposComentario.Aceito.ToString (), comentarioModel);
             } else {
                 if (form["choice"] == "recusado") {
-                    comentarioRep.Editar (TiposComentario.Recusado.ToString (), comentarioModel);
+                    ComentarioRepositorio.Editar (TiposComentario.Recusado.ToString (), comentarioModel);
                 } else {
                     ViewBag.Mensagem = "Opção inválida!";
                     return View ();
@@ -122,13 +120,11 @@ namespace CheckPoint.Sistema.Controllers {
                 ViewBag.UsuarioLogado = null;
             }
 
-            ComentarioRepositorio comentarioRep = new ComentarioRepositorio ();
-
             /// <summary>
             /// Retorna somente os comentários com status igual ao passado pelo parâmetro.
             /// </summary>
             /// <returns></returns>
-            ViewData["ComentariosAceitos"] = comentarioRep.ListarComentariosEspecifico (TiposComentario.Aceito.ToString ());
+            ViewData["ComentariosAceitos"] = ComentarioRepositorio.ListarComentariosEspecifico (TiposComentario.Aceito.ToString ());
 
             return View ();
         }

@@ -13,8 +13,6 @@ namespace CheckPoint.Sistema.Repositories {
                 ComentariosSalvos = LerArquivoSerializado ();
             } else {
                 ComentariosSalvos = new List<ComentarioModel> ();
-                // ComentariosSalvos = null;
-                // EscreverNoArquivo ();
             }
         }
 
@@ -26,8 +24,6 @@ namespace CheckPoint.Sistema.Repositories {
             ComentariosSalvos.Add (comentario);
 
             EscreverNoArquivo ();
-
-            // return comentario;
         }
 
         private void EscreverNoArquivo () {
