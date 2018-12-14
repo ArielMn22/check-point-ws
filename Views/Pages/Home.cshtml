@@ -102,7 +102,6 @@
         <img class="ma-top-g" src="/img/point.png" alt="Marca para iniciar ">
 
         <div class="comments-container">
-        @using CheckPoint.Sistema.Models;
         @using System.Collections.Generic;
 
         @{
@@ -116,21 +115,14 @@
                 <p>Seja o primeiro a dar o depoimento.</p>
             </div>
         } else {
-            int i = 0;
             foreach(ComentarioModel comentario in @ViewData["ComentariosAceitos"] as List<ComentarioModel>)
             {
-                if (i < 10)
-                {
                     <div class="comments-container-item">
                         <h3>@comentario.Usuario.Nome</h3>
                         <h4>@comentario.DataCriacao<h4>
                         <h4>Avaliação: @comentario.Nota<h4>
                         <p>@comentario.Mensagem</p>
                     </div>
-                    i++;
-                } else {
-                    break;
-                }
             }
         }
         </div>
@@ -142,7 +134,7 @@
         <h2 class="ma-top-g">Deixe seu depoimento!</h2>
 
         <form id="commentMessage" class="ma-top-g inpt-form" action="/Comentario/Cadastrar" method="POST">
-            <h3>@usuarioLogado.Nome,</h3>
+            <h3>@ViewBag.UsuarioLogado,</h3>
             <textarea class="inpt ma-top-s ma-bot-s" name="comentario"></textarea>
             
             <input type="hidden" name="id" value="@ViewBag.UsuarioId">

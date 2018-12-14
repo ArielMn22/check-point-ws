@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using CheckPoint.Sistema.Interfaces;
 using CheckPoint.Sistema.Models;
@@ -57,16 +58,26 @@ namespace CheckPoint.Sistema.Repositories {
             return (List<ComentarioModel>) serializador.Deserialize (memoria);
         }
 
-        public ComentarioModel BuscarPorId (int id) {
-            foreach (ComentarioModel comentario in ComentariosSalvos) {
-                if (id == comentario.Id) {
-                    return comentario;
-                }
-            }
+        /// <summary>
+        /// Busca um comentário por meio de seu ID.
+        /// </summary>
+        /// <returns>Retorna um comentarioModel.</returns>
+        public ComentarioModel BuscarPorId (int id) => ComentariosSalvos.FirstOrDefault(comentario => comentario.Id == id);
+        // {
+        //     foreach (ComentarioModel comentario in ComentariosSalvos) {
+        //         if (id == comentario.Id) {
+        //             return comentario;
+        //         }
+        //     }
 
-            return null;
-        }
+        //     return null;
+        // }
 
+        /// <summary>
+        /// Edita o Status de um comentário já existente.
+        /// </summary>
+        /// <param name="newStatus">Novo Status.</param>
+        /// <param name="newComentario">Comentário a ser alterado.</param>
         public void Editar (string newStatus, ComentarioModel newComentario) {
             for (int i = 0; i < ComentariosSalvos.Count; i++) {
                 if (newComentario.Id == ComentariosSalvos[i].Id)
@@ -81,8 +92,17 @@ namespace CheckPoint.Sistema.Repositories {
 
         }
 
+        /// <summary>
+        /// Lista todos os comentário salvos no sistema.
+        /// </summary>
+        /// <returns>Retorna uma 'List<ComentarioModel>'</returns>
         public List<ComentarioModel> ListarComentarios() => ComentariosSalvos;
-        
+
+        /// <summary>
+        /// Lista todos comentários salvos no sistema com o Status passado pelo parâmetro.
+        /// </summary>
+        /// <param name="status">Status dos comentários que vão ser listados.</param>
+        /// <returns>Retorna uma 'List<ComentarioModel>' somente com comentários correspondentes ao Status passado por parâmetro.</returns>        
         public List<ComentarioModel> ListarComentariosEspecifico(string status)
         {
             List<ComentarioModel> comentariosEspecificos = new List<ComentarioModel>();
@@ -95,8 +115,10 @@ namespace CheckPoint.Sistema.Repositories {
                 }
             }
 
+            // Inverte a ordem da lista;
             comentariosEspecificos.Reverse();
 
+            // Retorna a lista de comentários salvos no sistema;
             return comentariosEspecificos;
         }
     }

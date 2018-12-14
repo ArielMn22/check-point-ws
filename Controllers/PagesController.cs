@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using check_point.sistema.Sessions;
 using CheckPoint.Sistema.Enums;
 using CheckPoint.Sistema.Models;
@@ -19,10 +20,12 @@ namespace CheckPoint.Sistema.Controllers {
             } else {
                 ViewBag.UsuarioLogado = null;
             }
-            
+
             ComentarioRepositorio comentario = new ComentarioRepositorio();
+
+            List<ComentarioModel> comentariosAceitos = comentario.ListarComentariosEspecifico(TiposComentario.Aceito.ToString());
             
-            ViewData["ComentariosAceitos"] = comentario.ListarComentariosEspecifico(TiposComentario.Aceito.ToString());
+            ViewData["ComentariosAceitos"] = comentariosAceitos.Count <= 10 ? comentariosAceitos : comentariosAceitos.GetRange(0,10);
 
             return View ();
         }

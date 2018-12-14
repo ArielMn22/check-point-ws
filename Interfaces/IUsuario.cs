@@ -5,7 +5,7 @@ namespace CheckPoint.Sistema.Interfaces
 {
     public interface IUsuario
     {
-        UsuarioModel Cadastrar(UsuarioModel usuario);
+        void Cadastrar(UsuarioModel usuario);
         int ValidaUsuario(IFormCollection form);
         UsuarioModel Login(string email, string senha);
     }

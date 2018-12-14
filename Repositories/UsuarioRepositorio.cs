@@ -5,6 +5,7 @@ using CheckPoint.Sistema.Models;
 using System.Runtime.Serialization.Formatters.Binary;
 using CheckPoint.Sistema.Interfaces;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace CheckPoint.Sistema.Repositories
 {
@@ -30,13 +31,10 @@ namespace CheckPoint.Sistema.Repositories
                 UsuariosSalvos.Add(usuario); // Adiciona o usuário a lista.
 
                 EscreverNoArquivo(); // Irá criar o usuário administrador automaticamente;
-
-                ListarUsuariosConsole(); //Método para teste de usuários cadastrados
-
             }
         }
 
-        public UsuarioModel Cadastrar(UsuarioModel usuario)
+        public void Cadastrar(UsuarioModel usuario)
         {
             // Adiciona o ID do usuário com base na quantidade de usuários salvos na lista.
             usuario.Id = UsuariosSalvos.Count + 1;
@@ -45,8 +43,6 @@ namespace CheckPoint.Sistema.Repositories
             UsuariosSalvos.Add(usuario);
 
             EscreverNoArquivo();
-
-            return usuario;
         }
 
         private void EscreverNoArquivo()
@@ -87,7 +83,7 @@ namespace CheckPoint.Sistema.Repositories
         /// <summary>
         /// Método que valida se o usuário pode ser cadastrado.
         /// </summary>
-        /// <param name="form">Dados do usuário da ViewPage</param>
+        /// <param name="form">Dados do usuário da ViewPage().</param>
         /// <returns>0 - O usuário pode ser cadastrado. 1 - Nome vazio ou nulo. 2 -  O seguinte e-mail já está cadastrado. 3 - Senhas não coincidem. 4 - Senha possui menos de 6 caracteres.</returns>
         public int ValidaUsuario(IFormCollection form)
         {
@@ -120,46 +116,19 @@ namespace CheckPoint.Sistema.Repositories
         }
 
         /// <summary>
-        /// Se o usuário for cadastrado no sistema, retorna o usuário.
-        /// Caso não exista, retorne 'null'.
+        /// Método que retorna um usuário se este for cadastrado no sistema, retorna o usuário.
+        /// Caso não exista, retorna 'null'.
         /// </summary>
         /// <param name="email">Email informado pelo usuário na View.</param>
         /// <param name="senha">Senha informada pelo usuário na View.</param>
         /// <returns>'UsuarioModel' caso esteja cadastrado, 'null' caso não esteja.</returns>
-        public UsuarioModel Login(string email, string senha)
-        {
-            foreach(UsuarioModel usuario in UsuariosSalvos)
-            {
-                if (usuario.Email == email && usuario.Senha == senha)
-                {
-                    return usuario;
-                }
-            }
+        // Utilizei Linq para contruir o método.
+        public UsuarioModel Login(string email, string senha) => UsuariosSalvos.FirstOrDefault(usuario => usuario.Email == email && usuario.Senha == senha);
 
-            return null;
-        }
-
-        public UsuarioModel BuscarPorId(int id)
-        {
-            foreach(UsuarioModel usuario in UsuariosSalvos)
-            {
-                if (id == usuario.Id)
-                {
-                    return usuario;
-                }
-            }
-
-            return null;
-        }
-
-        public void ListarUsuariosConsole()
-        {
-            foreach(UsuarioModel user in UsuariosSalvos)
-            {
-                System.Console.WriteLine("###########################################");
-                System.Console.WriteLine(user);
-                System.Console.WriteLine("###########################################");
-            }
-        }
+        /// <summary>
+        /// Busca o usuário por ID.
+        /// </summary>
+        /// <returns>Retorna um usuarioModel</returns>
+        public UsuarioModel BuscarPorId(int id) => UsuariosSalvos.FirstOrDefault(d => d.Id == id);
     }
 }
