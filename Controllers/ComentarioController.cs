@@ -83,7 +83,7 @@ namespace CheckPoint.Sistema.Controllers {
         static string tipoGerenciar;
 
         /// <summary>
-        /// Método que retorna uma View() para o usuário.
+        /// Método que retorna a Dashboard de gerenciamento caso o usuário seja administrador.
         /// </summary>
         [HttpGet]
         public IActionResult Gerenciar () {
@@ -122,8 +122,8 @@ namespace CheckPoint.Sistema.Controllers {
         /// <summary>
         /// Método criado para editar o status do comentário, entre aprovado ou recusado.
         /// </summary>
-        /// <param name="form"></param>
-        /// <returns></returns>
+        /// <param name="form">Se o comentário foi aceito ou recusado.</param>
+        /// <returns>Retorna para a View();</returns>
         [HttpPost]
         public IActionResult Gerenciar (IFormCollection form) {
             int CommentId = int.Parse (form["commentId"]);
@@ -146,6 +146,9 @@ namespace CheckPoint.Sistema.Controllers {
             return RedirectToAction ("Gerenciar");
         }
 
+        /// <summary>
+        /// Retorna a View() para a página onde todos os depoimentos se encontram.
+        /// </summary>
         [HttpGet]
         public IActionResult Todos () {
 
@@ -168,6 +171,11 @@ namespace CheckPoint.Sistema.Controllers {
             return View ();
         }
 
+        /// <summary>
+        /// Coloca dentro da variável estática 'tipoGerenciar' o tipo de comentário que deve ser enviado para a View()/[HttpGet] da página Gerenciar.    
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns>Retorna para a View()/[HttpGet] da página Gerenciar.</returns>
         [HttpPost]
         public IActionResult TipoGerenciar (IFormCollection form) {
             if (form["tipoGerenciar"] == "aceito") {
