@@ -18,9 +18,7 @@ namespace CheckPoint.Sistema.Models
         #endregion
 
         #region Métodos construtores
-        public UsuarioModel(){
-            
-        }
+        public UsuarioModel(){}
         public UsuarioModel(int id, string nome, string email, string senha, bool admin)
         {
             this.Id = id;
