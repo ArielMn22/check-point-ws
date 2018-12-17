@@ -132,6 +132,7 @@ namespace CheckPoint.Sistema.Controllers {
 
             if (form["choice"] == "aceito") {
                 ComentarioRepositorio.Editar (TiposComentario.Aceito.ToString (), comentarioModel);
+                EmailController.EnviarAvaliacaoAprovada(comentarioModel);
             } else {
                 if (form["choice"] == "recusado") {
                     ComentarioRepositorio.Editar (TiposComentario.Recusado.ToString (), comentarioModel);
@@ -141,7 +142,7 @@ namespace CheckPoint.Sistema.Controllers {
                 }
             }
 
-            ViewBag.Mensagem = $"Status do comentário de Id '{comentarioModel.Id}' foi 💕🐱‍💻😉🌹🐱‍🐉🐱‍👓🐱‍👓🤔🤔🍣!";
+            ViewBag.Mensagem = $"Status do comentário de Id '{comentarioModel.Id}' foi alterado com sucesso!";
 
             return RedirectToAction ("Gerenciar");
         }

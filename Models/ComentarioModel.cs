@@ -22,7 +22,6 @@ namespace CheckPoint.Sistema.Models
 
         public ComentarioModel(string msg, DateTime data, string status, int nota, UsuarioModel usuario)
         {
-            // this.IdUsuario = IdUsuario;
             this.Mensagem = msg;
             this.DataCriacao = data;
             this.Status = status;
@@ -34,7 +33,6 @@ namespace CheckPoint.Sistema.Models
         public ComentarioModel(int id, string msg, DateTime data, string status, int nota, UsuarioModel usuario)
         {
             this.Id = id;
-            // this.IdUsuario = IdUsuario;
             this.Mensagem = msg;
             this.DataCriacao = data;
             this.Status = status;

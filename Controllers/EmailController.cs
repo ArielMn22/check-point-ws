@@ -17,9 +17,8 @@ namespace CheckPoint.Sistema.Controllers {
         public IActionResult EnviarContato(IFormCollection form)
         {
             email.UsuarioNome = form["usuarioNome"];
-            email.UsuarioEmail = form["userEmail"];
-            email.Mensagem = $"E-mail do usuário: {email.UsuarioEmail}\nMensagem: {form["emailMensagem"]}";
             email.Destino = "arielpaixao10@gmail.com";
+            email.Mensagem = $"E-mail do usuário: {email.Destino}\nMensagem: {form["emailMensagem"]}";
 
             Execute().Wait();
 
@@ -31,15 +30,24 @@ namespace CheckPoint.Sistema.Controllers {
         {
             email.Mensagem = "Seu usuário foi cadastrado com sucesso! Você já pode logar em nosso sistema a qualquer momento e deixar seu comentário!";
             email.UsuarioNome = usuario.Nome;
-            email.UsuarioEmail = usuario.Email;
             email.Destino = usuario.Email;
+
+            Execute().Wait();
+        }
+
+        [HttpPost]
+        public static void EnviarAvaliacaoAprovada(ComentarioModel comentario)
+        {
+            email.Mensagem = $"Seu comentario foi aprovado com sucesso! Agora você já pode vê-lo em nosso Home Page! **Seu comentário: {comentario.Mensagem}**";
+            email.UsuarioNome = comentario.Usuario.Nome;
+            email.Destino = comentario.Usuario.Email;
 
             Execute().Wait();
         }
 
         static async Task Execute()
         {
-            var apiKey = "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";
+            var apiKey = "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";
 
             var client = new SendGridClient(apiKey);
 
